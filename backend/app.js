@@ -5,6 +5,11 @@ cors = require('cors'),
 bodyParser = require('body-parser'),
 dataBaseConfig = require('./db/db');
 
+createError = function (err, req, res, next) {
+    console.error(err.message);
+    if (!err.statusCode) err.statusCode = 500;
+    res.status(err.statusCode).send(err.message);
+}
 // Connect to MongoDB
 mongoose.Promise = global.Promise;
 mongoose.connect(dataBaseConfig.db, {
@@ -34,11 +39,7 @@ const server = app.listen(port, () => {
 });
 
 // Error handler
-app.use(function createError(err, req, res, next) {
-    console.error(err.message);
-    if (!err.statusCode) err.statusCode = 500;
-    res.status(err.statusCode).send(err.message);
-});
+app.use(createError);
 
 // Find 404 and hand over to error handler
 app.use((req, res, next) => {

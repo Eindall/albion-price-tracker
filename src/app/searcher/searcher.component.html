@@ -1,19 +1,19 @@
-<h2>Search</h2>
-<form>
+<h3 style="margin-top:50px;margin-left:50px;">Search</h3>
+<form style="margin-left:50px;">
     <input type="search" name="query" [(ngModel)]="query" (keyup.enter)="search()" />
     <button type="button" (click)="search()">Search</button>
 </form>
-<table *ngIf="searchResults">
+<table class="table table-hover" *ngIf="searchResults">
     <thead>
         <tr>
-            <th>Item ID</th>
+            <th>Icon</th>
             <th>Item Name FR</th>
             <th>Item Name EN</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of searchResults; let i=index">
-            <td>{{item.itemId}}</td>
+        <tr *ngFor="let item of searchResults; let i=index" (click)="addTrackedItem(item)">
+            <td><img width="100px" height="100px" alt="No Img Found" src={{item.itemIcon}} title={{item.itemId}}/></td>
             <td>{{item.itemNameFR}}</td>
             <td>{{item.itemNameEN}}</td>
         </tr>

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           }
         }
         if (!this.confirm) {
-          this.errorMessage = 'Incorrect Username or Password...'
+          this.errorMessage = 'Incorrect Username or Password...';
           this.error = true;
         }
       });

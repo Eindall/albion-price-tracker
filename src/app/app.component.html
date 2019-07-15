@@ -10,7 +10,7 @@
           <a *ngIf="loggedIn" class="nav-link" (click)="logOut" href="/login">Log Out</a>
         </li>
       </ul>
+      <span *ngIf="currentUser" style="color:white;">{{ currentUser.userNickname }}</span>
   </div>
-  <span *ngIf="currentUser">{{ currentUser.userNickname }}</span>
 </nav>
 <router-outlet (activate)="checkLog()"></router-outlet>

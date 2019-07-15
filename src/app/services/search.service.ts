@@ -14,8 +14,11 @@ export class SearchService {
     this.get().subscribe((res) => {
       for (const key in res) {
         if (res[key]) {
+          let itemIcon = 'https://gameinfo.albiononline.com/api/gameinfo/items/';
+          if (res[key].UniqueName) { itemIcon += res[key].UniqueName; }
           const entry: Item = {
             itemId: res[key].UniqueName ? res[key].UniqueName : 'Not defined',
+            itemIcon,
             itemNameEN: res[key].LocalizedNames ? res[key].LocalizedNames.EN : 'Not defined',
             itemNameFR: res[key].LocalizedNames ? res[key].LocalizedNames.FR : 'Not defined'
           };
