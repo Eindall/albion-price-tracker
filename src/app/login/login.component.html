@@ -14,3 +14,4 @@
     <button type="button" (click)="register()" class="btn btn-outline-secondary" style="margin-left: 20px;">Register</button>
 </form>
 <div *ngIf="error" class="alert alert-danger fixed-bottom" role="alert">{{ errorMessage }}</div>
+<div *ngIf="confirm" class="alert alert-success fixed-bottom" role="alert">{{ confirmMessage }}</div>
