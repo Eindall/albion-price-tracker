@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">Albion Price Tracker</a>
+  <a class="navbar-brand" href="/">{{ title }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,9 +7,10 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a *ngIf="!loggedIn" class="nav-link" href="/login">Log In</a>
-          <a *ngIf="loggedIn" class="nav-link" href="/logOut">Log Out</a>
+          <a *ngIf="loggedIn" class="nav-link" (click)="logOut" href="/login">Log Out</a>
         </li>
       </ul>
   </div>
+  <span *ngIf="currentUser">{{ currentUser.userNickname }}</span>
 </nav>
-<router-outlet></router-outlet>
+<router-outlet (activate)="checkLog()"></router-outlet>

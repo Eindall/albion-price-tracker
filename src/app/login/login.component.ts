@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { User } from '../models/user.model';
 import { ApiService } from '../services/api.service';
+import { LogService } from '../services/log.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +21,7 @@ export class LoginComponent implements OnInit {
   private confirmMessage: string;
   private confirm: boolean;
 
-  constructor(private userApi: ApiService) {}
+  constructor(private userApi: ApiService, private logService: LogService, private router: Router) {}
 
   ngOnInit() {
   }
@@ -38,6 +41,8 @@ export class LoginComponent implements OnInit {
               if (user.userPassword === this.password) {
                 this.confirmMessage = 'Connected, redirecting...';
                 this.confirm = true;
+                this.logService.setLogged(user);
+                this.router.navigateByUrl('/dashboard');
                 break;
               }
             }
