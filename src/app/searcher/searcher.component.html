@@ -3,4 +3,19 @@
     <input type="search" name="query" [(ngModel)]="query" (keyup.enter)="search()" />
     <button type="button" (click)="search()">Search</button>
 </form>
-<pre>{{searchResults | json}}</pre>
+<table *ngIf="searchResults">
+    <thead>
+        <tr>
+            <th>Item ID</th>
+            <th>Item Name FR</th>
+            <th>Item Name EN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of searchResults; let i=index">
+            <td>{{item.itemId}}</td>
+            <td>{{item.itemNameFR}}</td>
+            <td>{{item.itemNameEN}}</td>
+        </tr>
+    </tbody>
+</table>
