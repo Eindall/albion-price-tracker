@@ -40,6 +40,7 @@ export class SearcherComponent implements OnInit {
         }
       }
       if (this.itemIsPushable) {
+        this.searchService.refreshPrices(item);
         user.userSubscribedItems.push(item);
       }
       this.apiService.updateUser(userId, user).subscribe(

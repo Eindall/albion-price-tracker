@@ -1,7 +1,8 @@
-import { Component, OnInit, IterableDiffers } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LogService } from '../services/log.service';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { SearchService } from '../services/search.service';
 
 
 
@@ -12,7 +13,8 @@ import { ApiService } from '../services/api.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private logService: LogService, private apiService: ApiService, private router: Router) {
+  constructor(private logService: LogService, private apiService: ApiService,
+              private searchService: SearchService, private router: Router) {
     if (!logService.isLogged) {
       router.navigateByUrl('/login');
     }
@@ -35,7 +37,16 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  refresh() {
+    for (const key in this.logService.loggedUser.userSubscribedItems) {
+      if (this.logService.loggedUser.userSubscribedItems[key]) {
+        const item = this.logService.loggedUser.userSubscribedItems[key];
+        this.searchService.refreshPrices(item);
+      }
+    }
   }
 
+  ngOnInit() {
+    this.refresh();
+  }
 }

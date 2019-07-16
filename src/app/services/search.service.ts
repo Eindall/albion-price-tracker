@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Item } from '../models/item.model';
+import { Price } from '../models/price.model';
 
 const itemList = [];
 
@@ -26,6 +27,32 @@ export class SearchService {
         }
       }
     });
+  }
+
+  refreshPrices(item) {
+    let url = 'https://www.albion-online-data.com/api/v1/stats/Prices/';
+
+    if (item.itemId) {
+      url += item.itemId;
+      this.http.get(url).subscribe((res) => {
+        const itemPrices: Price = {};
+        for (const key in res) {
+          if (res[key]) {
+            if (res[key].city === 'Black Market' || res[key].city === 'Fort Sterling') {
+              res[key].city = res[key].city.replace(/\s/g, '');
+            }
+            const city = res[key].city;
+            const values = {
+              minSellOrder: res[key].sell_price_min,
+              maxBuyOrder: res[key].buy_price_max
+            };
+            itemPrices[city] = values;
+          }
+        }
+        console.log(itemPrices);
+        item.itemPrices = itemPrices;
+      });
+    }
   }
 
   get(): Observable<object> {

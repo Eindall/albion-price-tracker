@@ -1,15 +1,25 @@
 <h1 class="display-4" style="margin-left:50px;margin-top:50px;">Dashboard</h1>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable" style="margin-left:50px;margin-top:50px">
-    Add new tracked item
-</button>
+<div style="display:flex;flex-direction:row;justify-content:space-between;">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable" style="margin-left:50px;margin-top:50px">
+        Add new tracked item
+    </button>
+    <button type="button" class="btn btn-primary" style="margin-right:50px;margin-top:50px;" (click)="refresh()">Refresh Prices</button>
+</div>
 
-<table class="table table-hover" *ngIf="logService.loggedUser.userSubscribedItems.length !== 0" style="margin-top: 50px;">
+<table class="table table-striped table-bordered table-hover" *ngIf="logService.loggedUser.userSubscribedItems.length !== 0" style="margin-top: 50px;">
         <thead>
             <tr>
                 <th>Icon</th>
                 <th>Item Name FR</th>
                 <th>Item Name EN</th>
+                <th>Black Market</th>
+                <th>Bridgewatch</th>
+                <th>Caerleon</th>
+                <th>Fort Sterling</th>
+                <th>Lymhurst</th>
+                <th>Martlock</th>
+                <th>Thetford</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +27,13 @@
                 <td><img width="100px" height="100px" alt="No Img Found" src={{item.itemIcon}} title={{item.itemId}}/></td>
                 <td>{{item.itemNameFR}}</td>
                 <td>{{item.itemNameEN}}</td>
+                <td>Buy Order: {{(item.itemPrices && item.itemPrices.BlackMarket) ? item.itemPrices.BlackMarket.maxBuyOrder : 0}}<br />Sell Order: {{(item.itemPrices && item.itemPrices.BlackMarket) ? item.itemPrices.BlackMarket.minSellOrder : 0}}</td>
+                <td>Buy Order: {{(item.itemPrices && item.itemPrices.Bridgewatch) ? item.itemPrices.Bridgewatch.maxBuyOrder : 0}}<br />Sell Order: {{(item.itemPrices && item.itemPrices.Bridgewatch) ? item.itemPrices.Bridgewatch.minSellOrder : 0}}</td>
+                <td>Buy Order: {{(item.itemPrices && item.itemPrices.Caerleon) ? item.itemPrices.Caerleon.maxBuyOrder : 0}}<br />Sell Order: {{(item.itemPrices && item.itemPrices.Caerleon) ? item.itemPrices.Caerleon.minSellOrder : 0}}</td>
+                <td>Buy Order: {{(item.itemPrices && item.itemPrices.FortSterling) ? item.itemPrices.FortSterling.maxBuyOrder : 0}}<br />Sell Order: {{(item.itemPrices && item.itemPrices.FortSterling) ? item.itemPrices.FortSterling.minSellOrder : 0}}</td>
+                <td>Buy Order: {{(item.itemPrices && item.itemPrices.Lymhurst) ? item.itemPrices.Lymhurst.maxBuyOrder : 0}}<br />Sell Order: {{(item.itemPrices && item.itemPrices.Lymhurst) ? item.itemPrices.Lymhurst.minSellOrder : 0}}</td>
+                <td>Buy Order: {{(item.itemPrices && item.itemPrices.Martlock) ? item.itemPrices.Martlock.maxBuyOrder : 0}}<br />Sell Order: {{(item.itemPrices && item.itemPrices.Martlock) ? item.itemPrices.Martlock.minSellOrder : 0}}</td>
+                <td>Buy Order: {{(item.itemPrices && item.itemPrices.Thetford) ? item.itemPrices.Thetford.maxBuyOrder : 0}}<br />Sell Order: {{(item.itemPrices && item.itemPrices.Thetford) ? item.itemPrices.Thetford.minSellOrder : 0}}</td>
             </tr>
         </tbody>
 </table>
