@@ -13,7 +13,7 @@ import { SearchService } from '../services/search.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private logService: LogService, private apiService: ApiService,
+  constructor(public logService: LogService, private apiService: ApiService,
               private searchService: SearchService, private router: Router) {
     if (!logService.isLogged) {
       router.navigateByUrl('/login');

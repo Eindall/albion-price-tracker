@@ -11,15 +11,15 @@ import { LogService } from '../services/log.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private nickname: string;
-  private password: string;
+  nickname: string;
+  password: string;
   private userInfos: User;
 
-  private errorMessage: string;
-  private error: boolean;
+  errorMessage: string;
+  error: boolean;
 
-  private confirmMessage: string;
-  private confirm: boolean;
+  confirmMessage: string;
+  confirm: boolean;
 
   constructor(private userApi: ApiService, private logService: LogService, private router: Router) {}
 
