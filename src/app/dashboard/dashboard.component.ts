@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   constructor(public logService: LogService, private apiService: ApiService,
               private searchService: SearchService, private router: Router) {
     if (!logService.isLogged) {
-      router.navigateByUrl('/login');
+      router.navigateByUrl('login');
     }
   }
 

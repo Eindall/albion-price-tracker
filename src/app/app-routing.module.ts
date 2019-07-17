@@ -7,7 +7,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'}
+  {path: 'albion-price-tracker/dashboard', redirectTo: 'dashboard'},
+  {path: 'albion-price-tracker/login', redirectTo: 'login'},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
 ];
 
 @NgModule({

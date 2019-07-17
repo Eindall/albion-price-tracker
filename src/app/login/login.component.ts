@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
                 this.confirmMessage = 'Connected, redirecting...';
                 this.confirm = true;
                 this.logService.setLogged(user);
-                this.router.navigateByUrl('/dashboard');
+                this.router.navigateByUrl('dashboard');
                 break;
               }
             }
